@@ -45,6 +45,7 @@ def main():
     criterions = {'L1': torch.nn.L1Loss(),
                   'L2': torch.nn.MSELoss()}
 
+    cfg.pytorch.gpu=-1
     if cfg.pytorch.gpu > -1:
         logger.info('Using GPU{}'.format(cfg.pytorch.gpu))
         network = network.cuda(cfg.pytorch.gpu)

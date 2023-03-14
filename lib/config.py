@@ -24,7 +24,7 @@ def get_default_config_pytorch():
     config = edict()
     config.exp_id = 'CDPN'          # Experiment ID
     config.task = 'rot'             # 'rot | trans | trans_rot'
-    config.gpu = 1
+    config.gpu = -1
     config.threads_num = 12         # 'nThreads'
     config.debug = False
     config.demo = '../demo'         # demo save path
@@ -144,8 +144,8 @@ def get_base_config():
 def update_config_from_file(_config, config_file, check_necessity=True):
     config = copy.deepcopy(_config)
     with open(config_file) as f:
-        # exp_config = edict(yaml.load(f, Loader=yaml.FullLoader))
-        exp_config = edict(yaml.load(f))
+        exp_config = edict(yaml.load(f, Loader=yaml.FullLoader))
+#        exp_config = edict(yaml.load(f))
         for k, v in exp_config.items():
             if k in config:
                 if isinstance(v, dict):
